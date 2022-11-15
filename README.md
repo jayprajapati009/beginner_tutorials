@@ -5,10 +5,10 @@
 ROS2 beginner tutorial practice assignment for ENPM808X course at University of Maryland.
 
 ## Task
--   Modify the publisher node to publish a custom string message
--   Modify the tutorial code to follow Google C++ Style Guide (with course modifications)
--   Run cpplint on your ROS package files and save the output as a text file to the results folder
--   Run cppcheck on your ROS package files and save the output as a text file to the results folder
+- Modify the publisher node to publish a custom string message
+- Modify the tutorial code to follow Google C++ Style Guide (with course modifications)
+- Run cpplint on your ROS package files and save the output as a text file to the results folder
+- Run cppcheck on your ROS package files and save the output as a text file to the results folder
 
 ## Dependencies
 - rclcpp
