@@ -1,0 +1,2 @@
+cpplint --filter=-build/c++11,+build/c++17,-build/namespaces,-build/include_order src/publisher_member_function.cpp src/subscriber_member_function.cpp > results/cpplint.txt
+cppcheck --enable=all --std=c++17 --suppress=missingIncludeSystem src/publisher_member_function.cpp src/subscriber_member_function.cpp > results/cppcheck.txt
