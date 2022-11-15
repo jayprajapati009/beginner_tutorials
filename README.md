@@ -66,3 +66,6 @@ To run the Cpplint and the cppcheck command and save the results in the results 
 ```sh
 sh cpplint_cppcheck.sh
 ```
+
+##   References
+[1] http://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html
