@@ -1,7 +1,7 @@
 /**
  * @file modify_msg_server.cpp
- * @author your name (you@domain.com)
- * @brief
+ * @author Jay Prajapati (jayp@umd.edu)
+ * @brief Service server defination file
  * @version 0.1
  * @date 2022-11-16
  *
