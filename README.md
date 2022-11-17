@@ -1,71 +1,157 @@
 
-# ROS2 Publisher and Subscriber  
+  
+
+# ROS2 Publisher and Subscriber
+
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+  
 
 ROS2 beginner tutorial practice assignment for ENPM808X course at University of Maryland.
 
+  
+
 ## Task
+
 - Modify the publisher node to publish a custom string message
+
 - Modify the tutorial code to follow Google C++ Style Guide (with course modifications)
+
 - Run cpplint on your ROS package files and save the output as a text file to the results folder
+
 - Run cppcheck on your ROS package files and save the output as a text file to the results folder
 
+  
+
 ## Dependencies
+
 - rclcpp
+
 - stdmsgs
+
 - OS: Ubuntu Linux 20.04
+
 - ROS Version: ROS2 Humble Hawksbill
+
+  
 
 ## Build Instructions
 
+  
+
 Navigate to the source folder of the ROS2 workspace
+
 ```sh
 cd ~/ros2_ws/src
 ```
+
 Clone the GitHub repository
+
 ```sh
 git clone https://github.com/jayprajapati009/beginner_tutorials.git
 ```
+Now change the name of the directory to ```cpp_pubsub```
+```sh
+mv beginner_tutorials cpp_pubsub
+```
+
 Now to build the package go to the root of the ROS2 workspace
+
 ```sh
 cd ~/ros2_ws
 ```
+
 check the dependencies
-```sh  
+
+```sh
 rosdep install -i --from-path src --rosdistro humble -y
 ```
-and build the package 
+
+and build the package
+
 ```sh
-colcon build --packages-select beginner_tutorials
+colcon build --packages-select cpp_pubsub
 ```
+
+  
 
 ## Run Instructions
+
 After the successful build, to run open a new terminal,
+
 ```sh
 cd ~/ros2_ws
-```
-```sh
-. install/setup.bash
-```
-```
-ros2 run ros_pubsub talker
-```
-To run the subscriber node, open a new terminal
-```sh
-cd ~/ros2_ws
-```
-```sh
-. install/setup.bash
-```
-```
-ros2 run ros_pubsub listener
 ```
 
-##  Cppcheck and Cpplint
+```sh
+. install/setup.bash
+```
+
+### Using the launch file
+
+To run the launch file and initate the publisher, subscriber and the service,
+```sh
+cd ~/ros2_ws/src/cpp_pubsub/launch
+```
+```sh
+ros2 launch week10_hw.yaml frequency:=20.0
+```
+
+### Launch the nodes
+To launch the **publisher** node,
+```sh
+cd ~/ros2_ws
+```
+```sh
+. install/setup.bash
+```
+```sh
+ros2 run ros_pubsub talker
+```
+To launch the **subscriber** node,
+```sh
+cd ~/ros2_ws
+```
+```sh
+. install/setup.bash
+```
+```sh
+ros2 run ros_pubsub listener
+```
+To launch the **server** node,
+```sh
+cd ~/ros2_ws
+```
+```sh
+. install/setup.bash
+```
+```sh
+ros2 run ros_pubsub server
+```
+
+### Change the ```frequency``` parameter
+
+```sh
+ros2 param set \minimal_publisher freq 5.0
+```
+  
+
+## Cppcheck and Cpplint
+
 To run the Cpplint and the cppcheck command and save the results in the results directory,
+
 ```sh
 sh cpplint_cppcheck.sh
 ```
 
-##   References
-[1] http://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html
+## Result Screenshots
+
+![Terminal](https://github.com/jayprajapati009/beginner_tutorials/blob/Week10_HW/results/terminal.png)
+
+![RQT Log](https://github.com/jayprajapati009/beginner_tutorials/blob/Week10_HW/results/rqt_log.png)
+
+![RQT Graph](https://github.com/jayprajapati009/beginner_tutorials/blob/Week10_HW/results/rqt_graph.png)
+
+## References
+
+[1] http://docs.ros.org/en/humble/index.html
