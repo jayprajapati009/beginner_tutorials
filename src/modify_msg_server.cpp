@@ -15,8 +15,8 @@
 #include <string>
 #include <vector>
 
-#include "cpp_pubsub/srv/modify_msg.hpp"
-#include "rclcpp/rclcpp.hpp"
+#include <cpp_pubsub/srv/modify_msg.hpp>
+#include <rclcpp/rclcpp.hpp>
 
 using ModifyMsg = cpp_pubsub::srv::ModifyMsg;
 

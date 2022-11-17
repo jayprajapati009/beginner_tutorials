@@ -26,11 +26,11 @@
 #include <chrono>
 #include <functional>
 #include <memory>
-#include <rclcpp/rclcpp.hpp>
-#include <std_msgs/msg/string.hpp>
 #include <string>
 
-#include "cpp_pubsub/srv/modify_msg.hpp"
+#include <rclcpp/rclcpp.hpp>
+#include <std_msgs/msg/string.hpp>
+#include <cpp_pubsub/srv/modify_msg.hpp>
 
 using std::placeholders::_1;
 using namespace std::chrono_literals;
