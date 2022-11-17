@@ -49,9 +49,29 @@ class MinimalPublisher : public rclcpp::Node {
    *
    */
   MinimalPublisher() : Node("minimal_publisher"), count_(0) {
+
+    // Parameter Declaration
+    auto param_desc = rcl_interfaces::msg::ParameterDescriptor();
+    param_desc.description = "Set callback frequency.";
+    this->declare_parameter("freq", 2.0, param_desc);
+    auto param = this->get_parameter("freq");
+    auto freq = param.get_parameter_value().get<std::float_t>();
+    RCLCPP_DEBUG(this->get_logger(),
+          "The parameter freq is declared, set to 2.0 hz");
+
+    // creating a subscriber for tthe parameter 
+    parameter_subscriber_ = std::make_shared<rclcpp::ParameterEventHandler>(this);
+    auto parameterCallbackPtr =
+            std::bind(&MinimalPublisher::parameter_callback, this, _1);
+    parameterHandle_ =
+          parameter_subscriber_->add_parameter_callback("freq", parameterCallbackPtr);
+
+
     publisher_ = this->create_publisher<std_msgs::msg::String>("topic", 10);
+    RCLCPP_DEBUG(this->get_logger(), "Publisher is Created");
+    auto delta = std::chrono::milliseconds(static_cast<int>((1000 / freq)));
     timer_ = this->create_wall_timer(
-        500ms, std::bind(&MinimalPublisher::timer_callback, this));
+        delta, std::bind(&MinimalPublisher::timer_callback, this));
 
     client = this->create_client<cpp_pubsub::srv::ModifyMsg>("modify_msg");
     RCLCPP_DEBUG(this->get_logger(), "Client created");
@@ -67,6 +87,8 @@ class MinimalPublisher : public rclcpp::Node {
  private:
   std::string Message;
   rclcpp::Client<cpp_pubsub::srv::ModifyMsg>::SharedPtr client;
+  std::shared_ptr<rclcpp::ParameterEventHandler>  parameter_subscriber_;
+  std::shared_ptr<rclcpp::ParameterCallbackHandle> parameterHandle_;
 
   /**
    * @brief timer_callback function, sets the message data and publishes the
@@ -118,6 +140,33 @@ class MinimalPublisher : public rclcpp::Node {
     // Process the response
     RCLCPP_INFO(this->get_logger(), "Got String: %s", future.get()->c.c_str());
     Message = future.get()->c.c_str();
+  }
+
+  /**
+   * @brief parameter_callback function, assigns the updated value of the parameter
+   * 
+   * @param param 
+   */
+  void parameter_callback(const rclcpp::Parameter & param) {
+    RCLCPP_INFO(this->get_logger(),
+                 "cb: Received an update to parameter \"%s\" of type %s: %.2f",
+                 param.get_name().c_str(),
+                 param.get_type_name().c_str(),
+                 param.as_double());
+    RCLCPP_WARN(this->get_logger(),
+    "The base frequency has been changed");
+
+    RCLCPP_FATAL_EXPRESSION(this->get_logger(), param.as_double() == 0.0,
+    "Frequency is set to zero, zero division error");
+    if (param.as_double() == 0.0) {
+      RCLCPP_ERROR(this->get_logger(),
+      "Frequency has not been changed.");
+    } else {
+      auto delta =
+      std::chrono::milliseconds(static_cast<int> ((1000 / param.as_double())));
+      timer_ = this->create_wall_timer(
+      delta, std::bind(&MinimalPublisher::timer_callback, this));
+    }
   }
 };
 
