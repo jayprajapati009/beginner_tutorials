@@ -9,13 +9,15 @@
  *
  */
 
-#include <cpp_pubsub/srv/modify_msg.hpp>
+#include <string>
+#include <vector>
 #include <cstdlib>
 #include <iterator>
 #include <memory>
+
+#include <cpp_pubsub/srv/modify_msg.hpp>
 #include <rclcpp/rclcpp.hpp>
-#include <string>
-#include <vector>
+
 
 using ModifyMsg = cpp_pubsub::srv::ModifyMsg;
 

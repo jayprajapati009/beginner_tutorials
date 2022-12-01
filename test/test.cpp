@@ -29,6 +29,10 @@
 
 #include "std_msgs/msg/string.hpp"
 
+/**
+ * @brief Class for testing the publisher
+ *
+ */
 class TaskPublisher : public testing::Test {
  protected:
   rclcpp::Node::SharedPtr test_node_;

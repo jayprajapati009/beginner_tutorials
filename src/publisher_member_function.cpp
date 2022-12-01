@@ -23,17 +23,19 @@
  *
  */
 
-#include <chrono>
+#include <tf2/LinearMath/Quaternion.h>
+#include <tf2_ros/static_transform_broadcaster.h>
+
 #include <functional>
+#include <chrono>
 #include <memory>
 #include <string>
 
-#include <cpp_pubsub/srv/modify_msg.hpp>
-#include <geometry_msgs/msg/transform_stamped.hpp>
-#include <tf2/LinearMath/Quaternion.h>
-#include <tf2_ros/static_transform_broadcaster.h>
 #include <rclcpp/rclcpp.hpp>
 #include <std_msgs/msg/string.hpp>
+#include <geometry_msgs/msg/transform_stamped.hpp>
+
+#include <cpp_pubsub/srv/modify_msg.hpp>
 
 using std::placeholders::_1;
 using namespace std::chrono_literals;
@@ -85,7 +87,8 @@ class MinimalPublisher : public rclcpp::Node {
       RCLCPP_WARN(rclcpp::get_logger("rclcpp"), "Service unavailable");
     }
 
-    tf_static_broadcaster_ = std::make_shared<tf2_ros::StaticTransformBroadcaster>(this);
+    tf_static_broadcaster_ =
+        std::make_shared<tf2_ros::StaticTransformBroadcaster>(this);
     geometry_msgs::msg::TransformStamped t;
 
     t.header.stamp = this->get_clock()->now();
@@ -95,7 +98,7 @@ class MinimalPublisher : public rclcpp::Node {
     t.transform.translation.x = 0.5;
     t.transform.translation.y = 0.3;
     t.transform.translation.z = 0.1;
-  
+
     t.transform.rotation.x = 0.123567;
     t.transform.rotation.y = 0.015675;
     t.transform.rotation.z = 0.032655;
