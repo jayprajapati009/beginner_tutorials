@@ -171,7 +171,7 @@ sh cpplint_cppcheck.sh
 
 ## Result Screenshots
 
-<img src="https://github.com/jayprajapati009/beginner_tutorials/blob/Week10_HW/results/terminal.png" alt="Terminal" width="200"/>
+<img src="https://github.com/jayprajapati009/beginner_tutorials/blob/Week10_HW/results/terminal.png" alt="Terminal" width="600" align="Centre"/>
 
 ![Terminal](https://github.com/jayprajapati009/beginner_tutorials/blob/Week10_HW/results/terminal.png)
 
