@@ -134,6 +134,31 @@ ros2 run ros_pubsub server
 ```sh
 ros2 param set \minimal_publisher freq 5.0
 ```
+
+### To record a bag file
+
+To run the launch file and initate the publisher, subscriber and the service,
+```sh
+cd ~/ros2_ws/src/cpp_pubsub/launch
+```
+```sh
+ros2 launch cpp_pubsub bag_record_launch.py bag_record:=True
+```
+
+### To play a bag file
+
+```sh
+cd ~/ros2_ws/src/cpp_pubsub/results/bag_files
+```
+select the bag file you want to play
+
+```sh
+ros2 bag info <file_name>
+```
+then, start the listener node and,
+```sh
+ros2 bag play <file_name>
+```
   
 
 ## Cppcheck and Cpplint
@@ -145,6 +170,8 @@ sh cpplint_cppcheck.sh
 ```
 
 ## Result Screenshots
+
+<img src="https://github.com/jayprajapati009/beginner_tutorials/blob/Week10_HW/results/terminal.png" alt="Terminal" width="200"/>
 
 ![Terminal](https://github.com/jayprajapati009/beginner_tutorials/blob/Week10_HW/results/terminal.png)
 
